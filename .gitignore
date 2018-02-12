@@ -15,9 +15,9 @@ ios
 .env.development.local
 .env.test.local
 .env.production.local
+.DS_Store
+.vscode
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-.DS_Store
