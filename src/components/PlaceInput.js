@@ -6,20 +6,34 @@ export default class PlaceInput extends Component {
     super(props)
   }
 
+  state = {
+    placeName: ''
+  }
+
+  placeNameChangeHandler = val => {
+    this.setState({placeName: val});
+  }
+
+  placeNameSubmitHandler = () => {
+    if (this.state.placeName.trim() === '') {
+      return;
+    }
+
+    this.props.onPlaceAdded(this.state.placeName)
+  }
+
   render() {
     return (
       <View style={styles.inputContainer}>
         <TextInput
           placeholder={'A place to visit'}
-          style={{
-          width: 300
-        }}
-          onChangeText={this.props.placeNameChangeHandler}
+          style={{width: 300}}
+          onChangeText={this.placeNameChangeHandler}
           style={styles.placeInput}/>
         <Button
           title='add'
           style={styles.placeButton}
-          onPress={this.props.placeNameSubmitHandler}/>
+          onPress={this.placeNameSubmitHandler}/>
       </View>
     )
   }

@@ -5,24 +5,15 @@ import PlaceInput from './src/components/PlaceInput'
 
 export default class App extends Component {
   state = {
-    placeName: '',
     places: []
   }
 
-  placeNameChangeHandler = val => {
-    this.setState({placeName: val});
-  }
-
-  placeNameSubmitHandler = () => {
-    if (this.state.placeName.trim() === '') {
-      return;
-    }
-
+  onPlaceAdded = placeName => {
     this.setState(prevState => {
       return {
         places: prevState
           .places
-          .concat(this.state.placeName)
+          .concat(placeName)
       }
     })
   }
@@ -30,9 +21,7 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <PlaceInput
-          placeNameChangeHandler={this.placeNameChangeHandler}
-          placeNameSubmitHandler={this.placeNameSubmitHandler}/>
+        <PlaceInput onPlaceAdded={this.onPlaceAdded}/>
         <PlaceList places={this.state.places}/>
       </View>
     );
