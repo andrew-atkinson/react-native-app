@@ -19,8 +19,7 @@ export default class App extends Component {
             key: Math.random(),
             name: placeName,
             image: {
-              uri: "https://img.posterlounge.co.uk/images/wbig/poster-new-york-skyline-by-night-1636" +
-                  "907.jpg"
+              uri: "https://img.posterlounge.co.uk/images/wbig/poster-new-york-skyline-by-night-1636907.jpg"
             }
           })
       }
