@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, TextInput, Button} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux'
 
 import PlaceList from './src/components/PlaceList'
@@ -20,7 +20,7 @@ class App extends Component {
     this.props.onDeletePlace()
   }
 
-  ModalClosedHandler = () => {
+  modalClosedHandler = () => {
     this.props.onDeselectPlace()
   }
 
@@ -30,7 +30,7 @@ class App extends Component {
         <PlaceDetail
           selectedPlace={this.props.selectedPlace}
           onItemDeleted={this.placeDeletedHandler}
-          onModalClosed={this.ModalClosedHandler}/>
+          onModalClosed={this.modalClosedHandler}/>
         <PlaceInput onPlaceAdded={this.placeAddedHandler}/>
         <PlaceList
           places={this.props.places}
@@ -47,18 +47,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-start'
-  },
-  inputContainer: {
-    width: "100%",
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: "center"
-  },
-  placeInput: {
-    width: "70%"
-  },
-  placeButton: {
-    width: "30%"
   }
 });
 
