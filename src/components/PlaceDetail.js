@@ -9,7 +9,7 @@ import {
 } from "react-native"
 
 const PlaceDetail = (props) => {
-  let modalContent;
+  let modalContent = null;
 
   if (props.selectedPlace) {
     modalContent = (
