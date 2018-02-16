@@ -28,12 +28,12 @@
         "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-ldrtl-xxxhdpi/abc_ic_ab_back_mtrl_am_alpha.png"
     },
     {
-        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/layout_abc_list_menu_item_icon.xml.flat",
-        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/layout/abc_list_menu_item_icon.xml"
-    },
-    {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
         "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xxhdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/layout_abc_list_menu_item_icon.xml.flat",
+        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/layout/abc_list_menu_item_icon.xml"
     },
     {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-mdpi_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -60,24 +60,24 @@
         "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xhdpi/abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-xhdpi_abc_tab_indicator_mtrl_alpha.9.png.flat",
-        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xhdpi/abc_tab_indicator_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi_abc_list_longpressed_holo.9.png.flat",
         "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xxhdpi/abc_list_longpressed_holo.9.png"
+    },
+    {
+        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-xhdpi_abc_tab_indicator_mtrl_alpha.9.png.flat",
+        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xhdpi/abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/anim_catalyst_push_up_out.xml.flat",
         "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/react-native-0.52.0.aar/912d4ce9c972dad57897f34d6dca006b/res/anim/catalyst_push_up_out.xml"
     },
     {
-        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi_abc_tab_indicator_mtrl_alpha.9.png.flat",
-        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xxhdpi/abc_tab_indicator_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-mdpi_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
         "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-mdpi/abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi_abc_tab_indicator_mtrl_alpha.9.png.flat",
+        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xxhdpi/abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-mdpi_abc_list_focused_holo.9.png.flat",
@@ -116,16 +116,16 @@
         "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xxhdpi/abc_ic_menu_share_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable_abc_list_selector_background_transition_holo_dark.xml.flat",
-        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable/abc_list_selector_background_transition_holo_dark.xml"
+        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
+        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xxxhdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/color_switch_thumb_material_dark.xml.flat",
         "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/color/switch_thumb_material_dark.xml"
     },
     {
-        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
-        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xxxhdpi/abc_ic_menu_paste_mtrl_am_alpha.png"
+        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable_abc_list_selector_background_transition_holo_dark.xml.flat",
+        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable/abc_list_selector_background_transition_holo_dark.xml"
     },
     {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-hdpi_abc_btn_check_to_on_mtrl_015.png.flat",
@@ -152,20 +152,20 @@
         "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-mdpi/abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/layout_abc_popup_menu_item_layout.xml.flat",
-        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/layout/abc_popup_menu_item_layout.xml"
-    },
-    {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/layout_abc_list_menu_item_layout.xml.flat",
         "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/layout/abc_list_menu_item_layout.xml"
     },
     {
-        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-xhdpi_abc_list_divider_mtrl_alpha.9.png.flat",
-        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xhdpi/abc_list_divider_mtrl_alpha.9.png"
+        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/layout_abc_popup_menu_item_layout.xml.flat",
+        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/layout/abc_popup_menu_item_layout.xml"
     },
     {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-mdpi_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
         "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-mdpi/abc_btn_switch_to_on_mtrl_00012.9.png"
+    },
+    {
+        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-xhdpi_abc_list_divider_mtrl_alpha.9.png.flat",
+        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xhdpi/abc_list_divider_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-mdpi_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
@@ -236,12 +236,12 @@
         "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-xxxhdpi/abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
-        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-hdpi_abc_btn_rating_star_on_mtrl_alpha.png.flat",
-        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-hdpi/abc_btn_rating_star_on_mtrl_alpha.png"
-    },
-    {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
         "source": "/Users/andrewatkinson/react-native-app/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/drawable-hdpi_abc_btn_rating_star_on_mtrl_alpha.png.flat",
+        "source": "/Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/res/drawable-hdpi/abc_btn_rating_star_on_mtrl_alpha.png"
     },
     {
         "merged": "/Users/andrewatkinson/react-native-app/android/app/build/intermediates/res/merged/debug/layout_abc_screen_toolbar.xml.flat",

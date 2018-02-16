@@ -5,8 +5,11 @@ import {
   Text,
   Button,
   Image,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from "react-native"
+
+import Icon from 'react-native-vector-icons/Ionicons'
 
 const PlaceDetail = (props) => {
   let modalContent = null;
@@ -26,7 +29,9 @@ const PlaceDetail = (props) => {
     animationType="slide">
       <View style={styles.modalContainer}>
         {modalContent}
-        <Button title="delete" color="red" onPress={props.onItemDeleted}/>
+        <TouchableOpacity onPress={props.onItemDeleted}>
+          <Icon name="ios-trash" color="red" size={30} />
+        </TouchableOpacity>
         <Button title="close" onPress={props.onModalClosed}/>
       </View>
     </Modal>

@@ -4,6 +4,7 @@ ADDED from /Users/andrewatkinson/react-native-app/android/app/src/main/AndroidMa
 INJECTED from /Users/andrewatkinson/react-native-app/android/app/src/main/AndroidManifest.xml:1:1-32:12
 INJECTED from /Users/andrewatkinson/react-native-app/android/app/src/main/AndroidManifest.xml:1:1-32:12
 INJECTED from /Users/andrewatkinson/react-native-app/android/app/src/main/AndroidManifest.xml:1:1-32:12
+MERGED from [:react-native-vector-icons] /Users/andrewatkinson/react-native-app/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.react:react-native:0.52.0] /Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/react-native-0.52.0.aar/912d4ce9c972dad57897f34d6dca006b/AndroidManifest.xml:2:1-15:12
 MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:support-v4:23.0.1] /Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/5f355651ca1944ac997aa9bacd6e4e5d/AndroidManifest.xml:17:1-24:12
@@ -47,6 +48,8 @@ uses-sdk
 ADDED from /Users/andrewatkinson/react-native-app/android/app/src/main/AndroidManifest.xml:9:5-11:41
 INJECTED from /Users/andrewatkinson/react-native-app/android/app/src/main/AndroidManifest.xml:9:5-11:41
 INJECTED from /Users/andrewatkinson/react-native-app/android/app/src/main/AndroidManifest.xml:9:5-11:41
+MERGED from [:react-native-vector-icons] /Users/andrewatkinson/react-native-app/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-vector-icons] /Users/andrewatkinson/react-native-app/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.52.0] /Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/react-native-0.52.0.aar/912d4ce9c972dad57897f34d6dca006b/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.52.0] /Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/react-native-0.52.0.aar/912d4ce9c972dad57897f34d6dca006b/AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/andrewatkinson/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/1e6b2a71f2a7cd08d17761275a5323ee/AndroidManifest.xml:20:5-43
