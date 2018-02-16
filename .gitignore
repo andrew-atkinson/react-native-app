@@ -3,9 +3,6 @@
 # expo
 .expo/
 
-# mobile builds
-ios
-
 # dependencies
 /node_modules
 
