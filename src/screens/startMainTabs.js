@@ -1,6 +1,6 @@
 import {Navigation} from 'react-native-navigation'
 
-const startTabs = () => {
+const startMainTabs = () => {
   Navigation.startTabBasedApp({
     tabs: [
       {
@@ -16,4 +16,4 @@ const startTabs = () => {
   })
 }
 
-export default startTabs
+export default startMainTabs
