@@ -12,3 +12,4 @@ class SharePlaceScreen extends Component {
 }
 
 export default SharePlaceScreen
+

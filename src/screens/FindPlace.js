@@ -12,3 +12,4 @@ class FindPlaceScreen extends Component {
 }
 
 export default FindPlaceScreen
+
