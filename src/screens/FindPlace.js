@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
-import {View, Text} from 'react-native'
+import {View} from 'react-native'
+import {connect} from 'react-redux'
+import PlaceList from '../components/PlaceList'
 
 class FindPlaceScreen extends Component {
-  render(){
+  render() {
     return (
       <View>
-        <Text>FindPlaceScreen</Text>
+        <PlaceList places={this.props.places}/>
       </View>
     )
   }
 }
 
-export default FindPlaceScreen
+const MapStateToProps = state => {
+  return {
+    places: state.places.places
+  }
+}
+
+export default connect(MapStateToProps)(FindPlaceScreen)
 
