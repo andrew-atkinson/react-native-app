@@ -1,4 +1,4 @@
-#Thu Feb 15 19:23:26 EST 2018
+#Fri Feb 16 15:53:45 EST 2018
 base.0=/Users/andrewatkinson/react-native-app/android/app/build/intermediates/transforms/dexMerger/debug/19
 path.0=classes.dex
 renamed.0=classes.dex
