@@ -29,7 +29,7 @@ const PlaceDetail = (props) => {
     animationType="slide">
       <View style={styles.modalContainer}>
         {modalContent}
-        <TouchableOpacity onPress={props.onItemDeleted}>
+        <TouchableOpacity onPress={props.onItemDeleted} style={styles.trash}>
           <Icon name="ios-trash" color="red" size={30} />
         </TouchableOpacity>
         <Button title="close" onPress={props.onModalClosed}/>
@@ -51,6 +51,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
     margin: 20
+  }, 
+  trash: {
+    alignItems: "center"
   }
 })
 
