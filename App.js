@@ -1,5 +1,5 @@
 import {Navigation} from 'react-native-navigation'
-import {Provide} from 'redux'
+import {Provider} from 'react-redux'
 
 import AuthScreen from './src/screens/Auth'
 import FindPlaceScreen from './src/screens/FindPlace'
