@@ -12,4 +12,4 @@ const RNRedux = () => (
   </Provider>
 )
 
-AppRegistry.registerComponent('reactnativeapp', () => RNRedux);
+AppRegistry.registerComponent('reactnativeapp', () => App);
