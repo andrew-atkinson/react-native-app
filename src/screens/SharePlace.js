@@ -11,12 +11,16 @@ import {
 import {connect} from 'react-redux'
 import {addPlace} from '../store/actions';
 
-import DefaultInput from '../components/UI/DefaultInput'
+import PlaceInput from '../components/PlaceInput'
 import MainText from '../components/UI/MainText'
 import HeadingText from '../components/UI/HeadingText'
-import imagePlaceholder from '../assets/bg.jpg'
+import PickImage from '../components/PickImage'
+import PickLocation from '../components/PickLocation'
 
 class SharePlaceScreen extends Component {
+  state = {
+    placeName: ""
+  }
   constructor(props) {
     super(props)
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
@@ -28,8 +32,14 @@ class SharePlaceScreen extends Component {
     }
   }
 
-  placeAddedHandler = placeName => {
-    this.props.onAddPlace(placeName)
+  placeNameChangedHandler = val => {
+    this.setState({placeName: val})
+  }
+
+  placeAddedHandler = () => {
+    if (this.state.placeName.trim() !== "") {
+      this.props.onAddPlace(this.state.placeName)
+    }
   }
 
   render() {
@@ -39,16 +49,14 @@ class SharePlaceScreen extends Component {
           <MainText>
             <HeadingText>Share a place with us!</HeadingText>
           </MainText>
-          <View style={styles.placeholder}>
-            <Image source={imagePlaceholder} style={styles.previewImage}/>
+          <PickImage/>
+          <PickLocation/>
+          <PlaceInput
+            placeName={this.state.placeName}
+            onChangeText={this.placeNameChangedHandler}/>
+          <View style={styles.button}>
+            <Button title="Share the Place" onPress={this.placeAddedHandler}/>
           </View>
-          <View style={styles.button}><Button title="Pick an Image"/></View>
-          <View style={styles.placeholder}>
-            <Text>Map</Text>
-          </View>
-          <View style={styles.button}><Button title="locate me"/></View>
-          <DefaultInput placeholder="Place Name"/>
-          <View style={styles.button}><Button title="Share the Place"/></View>
         </View>
       </ScrollView>
     )
