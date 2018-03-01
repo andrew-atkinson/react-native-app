@@ -13,10 +13,9 @@ import {deletePlace} from '../store/actions'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 class PlaceDetail extends Component {
-
   deletePlaceHandler = () => {
     this.props.onDeletedPlace(this.props.selectedPlace.key)
-    this.props.navigator.pop();
+    this.props.navigator.pop()
   }
 
   render() {

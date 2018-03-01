@@ -9,7 +9,7 @@ import SideDrawerScreen from './src/screens/SideDrawer'
 
 import configureStore from './src/store/config'
 
-const store = configureStore();
+const store = configureStore()
 
 //register screens
 Navigation.registerComponent("places.AuthScreen", () => AuthScreen, store, Provider)

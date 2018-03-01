@@ -4,7 +4,7 @@ export const addPlace = placeName => {
   return {
     type: ADD_PLACE, 
     placeName
-  };
+  }
 }
 
 export const deletePlace = key => {

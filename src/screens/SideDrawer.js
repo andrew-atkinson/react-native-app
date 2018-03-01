@@ -8,8 +8,7 @@ class SideDrawerScreen extends Component {
         style={[
         styles.container, 
         {width: Dimensions.get("window").width * 0.8}
-        ]}
-      >
+        ]} >
         <Text>SideDrawer</Text>
       </View>
     )
