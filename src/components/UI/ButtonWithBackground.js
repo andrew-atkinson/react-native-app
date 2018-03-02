@@ -21,11 +21,7 @@ const ButtonWithBackground = props => {
     )
   }
   return (
-    <TouchableOpacity onPress={props.onPress}>
-      <View style={[styles.button, {backgroundColor: props.color}]}>
-        <Text >{props.children}</Text>
-      </View>
-    </TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress}>{content}</TouchableOpacity>
   )
 }
 
