@@ -16,7 +16,9 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 class PlaceDetail extends Component {
   state = {
-    viewMode: Dimensions.get('window').height > 500 ? 'portrait' : 'landscape'
+    viewMode: Dimensions.get('window').height > 500
+      ? 'portrait'
+      : 'landscape'
   }
 
   constructor(props) {
@@ -43,12 +45,24 @@ class PlaceDetail extends Component {
 
   render() {
     return (
-      <View style={this.state.viewMode === 'landscape' ? styles.landscapeContainer : styles.portraitContainer}>
-        <Image source={this.props.selectedPlace.image} style={this.state.viewMode === 'landscape' ? styles.landscapePlaceImage : styles.portraitPlaceImage}/>
+      <View
+        style={this.state.viewMode === 'landscape'
+        ? styles.landscapeContainer
+        : styles.portraitContainer}>
+        <Image
+          source={this.props.selectedPlace.image}
+          style={this.state.viewMode === 'landscape'
+          ? styles.landscapePlaceImage
+          : styles.portraitPlaceImage}/>
         <View>
           <Text style={styles.placeName}>{this.props.selectedPlace.name}</Text>
           <TouchableOpacity onPress={this.deletePlaceHandler} style={styles.trash}>
-            <Icon name={Platform.OS === 'android' ? 'md-trash' : 'ios-trash'} color='red' size={30}/>
+            <Icon
+              name={Platform.OS === 'android'
+                ? 'md-trash'
+                : 'ios-trash'}
+              color='red'
+              size={30}/>
           </TouchableOpacity>
         </View>
       </View>
