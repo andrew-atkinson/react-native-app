@@ -18,9 +18,14 @@ import PickImage from '../components/PickImage'
 import PickLocation from '../components/PickLocation'
 
 class SharePlaceScreen extends Component {
+  static navigatorStyle = {
+    navBarButtonColor: "orange"
+  }
+
   state = {
     placeName: ""
   }
+
   constructor(props) {
     super(props)
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)

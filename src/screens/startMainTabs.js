@@ -40,6 +40,12 @@ const startMainTabs = () => {
           }
         }
       ],
+      tabsStyle: {
+        tabBarSelectedButtonColor: "orange"
+      },
+      appStyle: {
+        tabBarSelectedButtonColor: "orange"
+      },
       drawer: {
         left: {
           screen: "places.SideDrawerScreen"
