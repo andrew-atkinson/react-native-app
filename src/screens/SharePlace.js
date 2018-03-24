@@ -8,6 +8,8 @@ import {
   ScrollView
 } from 'react-native'
 import {connect} from 'react-redux'
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+
 import {addPlace} from '../store/actions';
 
 import PlaceInput from '../components/PlaceInput'
@@ -15,6 +17,8 @@ import MainText from '../components/UI/MainText'
 import HeadingText from '../components/UI/HeadingText'
 import PickImage from '../components/PickImage'
 import PickLocation from '../components/PickLocation'
+
+import validate from '../utility/validation'
 
 class SharePlaceScreen extends Component {
   static navigatorStyle = {
@@ -63,7 +67,7 @@ class SharePlaceScreen extends Component {
 
   render() {
     return (
-      <ScrollView>
+      <KeyboardAwareScrollView>
           <View style={styles.container}>
             <MainText>
               <HeadingText>Share a place with us!</HeadingText>
@@ -80,7 +84,7 @@ class SharePlaceScreen extends Component {
               <Button title="Share the Place" onPress={this.placeAddedHandler}/>
             </View>
           </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     )
   }
 }
