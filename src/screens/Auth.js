@@ -8,6 +8,7 @@ import {
   ImageBackground,
   Dimensions
 } from 'react-native'
+import {connect} from 'react-redux'
 
 import startMainTabs from './startMainTabs'
 import DefaultInput from '../components/UI/DefaultInput'
@@ -16,11 +17,13 @@ import MainText from '../components/UI/MainText'
 import ButtonWithBackground from '../components/UI/ButtonWithBackground'
 import imageBackground from '../assets/bg.jpg'
 import validate from '../utility/validation'
+import {tryAuth} from '../store/actions/index'
 
 class AuthScreen extends Component {
   state = {
     viewMode: Dimensions.get('window').height > 500 ? "portrait" : "landscape",
-    controls:{
+    authMode: "login",
+    controls: {
       email: {
         value: '',
         valid: false,
@@ -29,7 +32,7 @@ class AuthScreen extends Component {
         },
         touched: false
       },
-      password : {
+      password: {
         value: '',
         valid: false,
         validationRules: {
@@ -37,14 +40,14 @@ class AuthScreen extends Component {
         },
         touched: false
       },
-      confirmPassword : {
+      confirmPassword: {
         value: '',
         valid: false,
         validationRules: {
           equalTo: 'password'
         },
         touched: false
-      },
+      }
     }
   }
 
@@ -65,7 +68,22 @@ class AuthScreen extends Component {
     })
   }
 
+  switchAuthModeHandler = () => {
+    this.setState(prevState => {
+      return {
+      authMode: prevState.authMode === 'login'
+        ? 'signUp'
+        : 'login'
+      }
+    })
+  }
+
   loginHandler = () => {
+    const authData = {
+      email: this.state.controls.email.value,
+      password: this.state.controls.password.value
+    }
+    this.props.onLogin(authData)
     startMainTabs()
   }
 
@@ -92,26 +110,23 @@ class AuthScreen extends Component {
           confirmPassword: {
             ...prevState.controls.confirmPassword,
             valid: key === 'password'
-              ? validate(
-                prevState.controls.confirmPassword.value,
-                prevState.controls.confirmPassword.validationRules,
-                connectedValue
-              )
+              ? validate(prevState.controls.confirmPassword.value, prevState.controls.confirmPassword.validationRules, connectedValue)
               : prevState.controls.confirmPassword.valid
           },
           [key]: {
-            ...prevState.controls[key], 
+            ...prevState.controls[key],
             value: value,
             valid: validate(value, prevState.controls[key].validationRules, connectedValue),
             touched: true
           }
         }
       }
-    }) 
+    })
   }
 
   render() {
     let headingText = null;
+    let confirmPasswordControl = null;
     if (this.state.viewMode === "portrait") {
       headingText = (
         <MainText>
@@ -119,61 +134,72 @@ class AuthScreen extends Component {
         </MainText>
       )
     }
+    if (this.state.authMode === 'signUp') {
+      confirmPasswordControl = (
+        <View
+          style={this.state.viewMode === 'portrait'
+          ? styles.portraitPasswordWrapper
+          : styles.landscapePasswordWrapper}
+        >
+          <DefaultInput
+            placeholder="confirm your password"
+            style={styles.input}
+            value={this.state.controls.confirmPassword.value}
+            onChangeText={val => this.updateInputState('confirmPassword', val)}
+            valid={this.state.controls.confirmPassword.valid}
+            touched={this.state.controls.confirmPassword.touched}
+            secureTextEntry
+            />
+        </View>
+      )
+    }
     return (
       <ImageBackground source={imageBackground} style={styles.imageBackground}>
         <View style={styles.container}>
           {headingText}
-          <ButtonWithBackground color="#29aaf4" onPress={() => alert("YO!")}>Switch to Login</ButtonWithBackground>
+          <ButtonWithBackground 
+            color="#29aaf4" 
+            onPress={this.switchAuthModeHandler}>Switch to {this.state.authMode === 'login' ? 'Sign Up' : 'Log in'}</ButtonWithBackground>
           <View style={styles.inputContainer}>
-            <DefaultInput 
+            <DefaultInput
               placeholder="Your email address"
               style={styles.input}
               value={this.state.controls.email.value}
               onChangeText={val => this.updateInputState('email', val)}
               valid={this.state.controls.email.valid}
               touched={this.state.controls.email.touched}
+              autoCapitalize='none'
+              autoCorrect={false}
+              keyboardType='email-address'  
             />
+            <View style={this.state.viewMode === 'portrait' || this.state.authMode === 'login'
+                      ? styles.portraitPasswordContainer
+                      : styles.landscapePasswordContainer}
+            >
             <View
-              style={this.state.viewMode === 'portrait'
-              ? styles.portraitPasswordContainer
-              : styles.landscapePasswordContainer}>
-              <View
-                style={this.state.viewMode === 'portrait'
-                ? styles.portraitPasswordWrapper
-                : styles.landscapePasswordWrapper}>
-                <DefaultInput
-                  placeholder="Your password"
-                  style={styles.input}
-                  value={this.state.controls.password.value}
-                  onChangeText={val => this.updateInputState('password', val)}
-                  valid={this.state.controls.password.valid}
-                  touched={this.state.controls.password.touched}
-                />
-              </View>
-              <View
-                style={this.state.viewMode === 'portrait'
-                ? styles.portraitPasswordWrapper
-                : styles.landscapePasswordWrapper}>
-                <DefaultInput 
-                  placeholder="confirm your password" 
-                  style={styles.input}
-                  value={this.state.controls.confirmPassword.value}
-                  onChangeText={val => this.updateInputState('confirmPassword', val)}
-                  valid={this.state.controls.confirmPassword.valid}
-                  touched={this.state.controls.confirmPassword.touched}
-                />
-              </View>
+              style={this.state.viewMode === 'portrait' || this.state.authMode === 'login'
+              ? styles.portraitPasswordWrapper
+              : styles.landscapePasswordWrapper}>
+              <DefaultInput
+                placeholder="Your password"
+                style={styles.input}
+                value={this.state.controls.password.value}
+                onChangeText={val => this.updateInputState('password', val)}
+                valid={this.state.controls.password.valid}
+                touched={this.state.controls.password.touched}
+                secureTextEntry/>
+            </View>
+            {confirmPasswordControl}
             </View>
           </View>
-          <ButtonWithBackground 
-            color="#29aaf4" 
+          <ButtonWithBackground
+            color="#29aaf4"
             onPress={this.loginHandler}
             disabled={
-              !this.state.controls.email.valid ||
-              !this.state.controls.password.valid ||
-              !this.state.controls.confirmPassword.valid
-            }
-          >Submit</ButtonWithBackground>
+              !this.state.controls.email.valid || 
+              !this.state.controls.password.valid || 
+              !this.state.controls.confirmPassword.valid && this.state.authMode === 'signUp'
+            }>Submit</ButtonWithBackground>
         </View>
       </ImageBackground>
     );
@@ -203,7 +229,7 @@ const styles = StyleSheet.create({
   landscapePasswordContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between'
-  },
+  }, 
   portraitPasswordWrapper: {
     width: '100%'
   },
@@ -212,4 +238,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AuthScreen
+const mapDispatchToProps = dispatch => {
+  return {
+    onLogin: authData => dispatch(tryAuth(authData))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AuthScreen)
