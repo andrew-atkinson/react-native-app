@@ -5,8 +5,13 @@
 
 # dependencies
 /node_modules
-ios/
-android/
+
+# builds
+/ios
+/android
+
+# firebase functions
+/functions
 
 # misc
 .env.local
