@@ -12,6 +12,7 @@
 
 # firebase functions
 /functions
+.firebaserc
 
 # misc
 .env.local
