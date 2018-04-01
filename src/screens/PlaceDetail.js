@@ -10,6 +10,7 @@ import {
   Dimensions
 } from 'react-native'
 import {connect} from 'react-redux'
+import MapView from 'react-native-maps'
 import {deletePlace} from '../store/actions'
 
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -54,7 +55,7 @@ class PlaceDetail extends Component {
           style={this.state.viewMode === 'landscape'
           ? styles.landscapePlaceImage
           : styles.portraitPlaceImage}/>
-        <View>
+        <View style={this.state.viewMode === 'landscape' ? styles.landscapeWrapper : styles.portraitWrapper}>
           <Text style={styles.placeName}>{this.props.selectedPlace.name}</Text>
           <TouchableOpacity onPress={this.deletePlaceHandler} style={styles.trash}>
             <Icon
@@ -64,6 +65,20 @@ class PlaceDetail extends Component {
               color='red'
               size={30}/>
           </TouchableOpacity>
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              longitude:this.props.selectedPlace.location.longitude,
+              latitude:this.props.selectedPlace.location.latitude,
+              latitudeDelta: 0.0122,
+              longitudeDelta: 
+              Dimensions.get('window').width 
+              / Dimensions.get('window').height 
+              * 0.0122
+            }}
+          >
+            <MapView.Marker coordinate={this.props.selectedPlace.location} />
+          </MapView>
         </View>
       </View>
     )
@@ -72,12 +87,11 @@ class PlaceDetail extends Component {
 
 const styles = StyleSheet.create({
   portraitContainer: {
-    margin: 22,
     flexDirection: 'column',
     justifyContent: 'flex-start'
   },
   landscapeContainer: {
-    margin: 22,
+    margin: 10,
     flexDirection: 'row',
     justifyContent: 'center'
   },
@@ -92,11 +106,22 @@ const styles = StyleSheet.create({
   placeName: {
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 30,
-    margin: 20
+    fontSize: 30
   },
   trash: {
     alignItems: 'center'
+  },
+  map: {
+    width: '100%',
+    height: '50%'
+  },
+  landscapeWrapper: {
+    width: '40%',
+    paddingLeft: 10
+  },
+  portraitWrapper: {
+    width: '100%',
+    paddingLeft: 0
   }
 })
 

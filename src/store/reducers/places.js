@@ -14,7 +14,8 @@ const reducer = (state = initialState, action) => {
           name: action.placeName,
           image: {
             uri: "https://img.posterlounge.co.uk/images/wbig/poster-new-york-skyline-by-night-1636907.jpg"
-          }
+          },
+          location: action.location
         })
       }
 
