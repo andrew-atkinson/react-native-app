@@ -5,6 +5,7 @@
 
 # dependencies
 /node_modules
+/functions/node_modules
 
 # builds
 /ios
@@ -12,7 +13,11 @@
 
 # firebase functions
 /functions
+!/functions/index.js
 .firebaserc
+
+#private-key
+places-private.json
 
 # misc
 .env.local
