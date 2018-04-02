@@ -96,6 +96,23 @@ class SharePlaceScreen extends Component {
   }
 
   render() {
+    let submitButton = (
+      <Button 
+        title="Share the Place" 
+        onPress={this.placeAddedHandler}
+        disabled={
+          !this.state.controls.valid ||
+          !this.state.location.valid ||
+          !this.state.image.valid
+        }
+      />
+    )
+
+    if (this.props.isLoading) {
+      submitButton = (
+        <Text>Loading</Text>
+      )
+    }
     return (
       <KeyboardAwareScrollView>
           <View style={styles.container}>
@@ -111,15 +128,7 @@ class SharePlaceScreen extends Component {
                 touched={this.state.controls.touched}
               />
             <View style={styles.button}>
-              <Button 
-              title="Share the Place" 
-              onPress={this.placeAddedHandler}
-              disabled={
-                !this.state.controls.valid ||
-                !this.state.location.valid ||
-                !this.state.image.valid
-              }
-            />
+              {submitButton}
             </View>
           </View>
       </KeyboardAwareScrollView>
@@ -147,10 +156,12 @@ const styles = StyleSheet.create({
   }
 })
 
-const MapDispatchToProps = dispatch => {
-  return {
-    onAddPlace: (placeName, location, image) => dispatch(addPlace(placeName, location, image))
-  }
-}
+const MapStateToProps = state => ({
+  isLoading: state.ui.isLoading
+})
 
-export default connect(null, MapDispatchToProps)(SharePlaceScreen)
+const MapDispatchToProps = dispatch => ({
+  onAddPlace: (placeName, location, image) => dispatch(addPlace(placeName, location, image))
+})
+
+export default connect(MapStateToProps, MapDispatchToProps)(SharePlaceScreen)
