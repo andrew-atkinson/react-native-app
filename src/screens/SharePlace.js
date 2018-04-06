@@ -5,7 +5,8 @@ import {
   Button,
   TextInput,
   StyleSheet,
-  ScrollView
+  ScrollView,
+  ActivityIndicator
 } from 'react-native'
 import {connect} from 'react-redux'
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
@@ -110,7 +111,7 @@ class SharePlaceScreen extends Component {
 
     if (this.props.isLoading) {
       submitButton = (
-        <Text>Loading</Text>
+        <ActivityIndicator/>
       )
     }
     return (
