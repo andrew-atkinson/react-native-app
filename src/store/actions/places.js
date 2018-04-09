@@ -74,7 +74,7 @@ export const setPlaces = places => {
 
 export const deletePlace = key => {
   return dispatch => {
-    fetch('https://react-native-app-1521939321832.firebaseio.com/places' + key + '.json', {method: 'DELETE'})
+    fetch('https://react-native-app-1521939321832.firebaseio.com/places/' + key + '.json', {method: 'DELETE'})
     .catch(err => {
       console.log('err', err)
       alert("location: Something went wrong, please try again!")      
