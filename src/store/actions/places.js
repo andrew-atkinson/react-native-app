@@ -1,7 +1,8 @@
-import {SET_PLACES} from './actionTypes'
+import {SET_PLACES, DELETE_PLACE} from './actionTypes'
 import {uiStopLoading, uiStartLoading} from './index'
 
 export const addPlace = (placeName, location, image) => {
+  console.log('placeName, location, image', placeName, location, image)
   return dispatch => {
     dispatch(uiStartLoading())
     fetch('https://us-central1-react-native-app-1521939321832.cloudfunctions.net/storeImage', {
@@ -12,7 +13,7 @@ export const addPlace = (placeName, location, image) => {
     })
     .catch(err => {
       console.log('err', err)
-      alert("Something went wrong, please try again!")
+      alert("Imagestore: Something went wrong, please try again!")
       dispatch(uiStopLoading())
     })
     .then(res => res.json())
@@ -29,8 +30,8 @@ export const addPlace = (placeName, location, image) => {
     })
     .catch(err => {
       console.log('err', err)
-      alert("Something went wrong, please try again!")      
-      dispatch(uiStopLoading)
+      alert("location: Something went wrong, please try again!")      
+      dispatch(uiStopLoading())
     })
     .then(res => res.json())
     .then(parsedRes => {
@@ -71,4 +72,21 @@ export const setPlaces = places => {
   }
 }
 
-export const deletePlace = key => ({type: DELETE_PLACE, placeKey: key})
+export const deletePlace = key => {
+  return dispatch => {
+    fetch('https://react-native-app-1521939321832.firebaseio.com/places' + key + '.json', {method: 'DELETE'})
+    .catch(err => {
+      console.log('err', err)
+      alert("location: Something went wrong, please try again!")      
+      dispatch(uiStopLoading())
+    })
+    .then(res => res.json())
+    .then(parsedRes => {
+      console.log("done...", parsedRes)
+      dispatch(deletePlaceAction(key))
+    })
+
+  }
+}
+
+export const deletePlaceAction = key => ({type: DELETE_PLACE, key})
