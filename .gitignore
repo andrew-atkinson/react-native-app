@@ -1,7 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # expo
-.expo/
+.expo
 
 # dependencies
 /node_modules
@@ -13,11 +13,11 @@
 
 # firebase functions
 /functions/etc
-firebase-keys.json
+/functions/firebase-keys.json
 .firebaserc
 
 #private-key
-places-private.json
+/functions/private-key.json
 
 # misc
 .env.local
