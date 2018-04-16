@@ -106,8 +106,7 @@ class AuthScreen extends Component {
         equalTo: value
       }
     }
-    this.setState(prevState => {
-      return {
+    this.setState(prevState => ({
         controls: {
           ...prevState.controls,
           confirmPassword: {
@@ -123,8 +122,7 @@ class AuthScreen extends Component {
             touched: true
           }
         }
-      }
-    })
+    }))
   }
 
   render() {
@@ -157,12 +155,22 @@ class AuthScreen extends Component {
       )
     }
     return (
-      <ImageBackground source={imageBackground} style={styles.imageBackground}>
-        <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <ImageBackground 
+        source={imageBackground} 
+        style={styles.imageBackground}>
+        <KeyboardAvoidingView 
+          style={styles.container} 
+          behavior="padding">
           {headingText}
           <ButtonWithBackground 
             color="#29aaf4" 
-            onPress={this.switchAuthModeHandler}>Switch to {this.state.authMode === 'login' ? 'Sign Up' : 'Log in'}</ButtonWithBackground>
+            onPress={this.switchAuthModeHandler}>
+              Switch to {
+                this.state.authMode === 'login' 
+                  ? 'Sign Up' 
+                  : 'Log in'
+                }
+          </ButtonWithBackground>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}> 
             <View style={styles.inputContainer}>
               <DefaultInput
@@ -176,24 +184,30 @@ class AuthScreen extends Component {
                 autoCorrect={false}
                 keyboardType='email-address'  
               />
-              <View style={this.state.viewMode === 'portrait' || this.state.authMode === 'login'
-                        ? styles.portraitPasswordContainer
-                        : styles.landscapePasswordContainer}
+              <View style={
+                this.state.viewMode === 'portrait' || this.state.authMode === 'login'
+                  ? styles.portraitPasswordContainer
+                  : styles.landscapePasswordContainer
+                }
               >
-              <View
-                style={this.state.viewMode === 'portrait' || this.state.authMode === 'login'
-                ? styles.portraitPasswordWrapper
-                : styles.landscapePasswordWrapper}>
-                <DefaultInput
-                  placeholder="Your password"
-                  style={styles.input}
-                  value={this.state.controls.password.value}
-                  onChangeText={val => this.updateInputState('password', val)}
-                  valid={this.state.controls.password.valid}
-                  touched={this.state.controls.password.touched}
-                  secureTextEntry/>
-              </View>
-              {confirmPasswordControl}
+                <View
+                  style={
+                    this.state.viewMode === 'portrait' || this.state.authMode === 'login'
+                      ? styles.portraitPasswordWrapper
+                      : styles.landscapePasswordWrapper
+                  }
+                >
+                  <DefaultInput
+                    placeholder="Your password"
+                    style={styles.input}
+                    value={this.state.controls.password.value}
+                    onChangeText={val => this.updateInputState('password', val)}
+                    valid={this.state.controls.password.valid}
+                    touched={this.state.controls.password.touched}
+                    secureTextEntry
+                  />
+                </View>
+                {confirmPasswordControl}
               </View>
             </View>
           </TouchableWithoutFeedback>
@@ -204,7 +218,10 @@ class AuthScreen extends Component {
               !this.state.controls.email.valid || 
               !this.state.controls.password.valid || 
               !this.state.controls.confirmPassword.valid && this.state.authMode === 'signUp'
-            }>Submit</ButtonWithBackground>
+            }
+          >
+            Submit
+          </ButtonWithBackground>
         </KeyboardAvoidingView>
       </ImageBackground>
     );
