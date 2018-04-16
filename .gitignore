@@ -15,6 +15,10 @@
 /functions/etc
 /functions/firebase-keys.json
 .firebaserc
+/functions/.eslintrc.json
+/functions/package-lock.json
+storage.rules
+database.rules.json
 
 #private-key
 /functions/private-key.json
