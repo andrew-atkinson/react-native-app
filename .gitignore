@@ -31,6 +31,9 @@ database.rules.json
 .DS_Store
 .vscode
 
+#apikey
+APIKEY.json
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
