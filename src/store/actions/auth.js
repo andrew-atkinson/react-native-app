@@ -1,4 +1,4 @@
-import {TRY_AUTH} from './actionTypes'
+import {TRY_AUTH, AUTH_SET_TOKEN} from './actionTypes'
 import {APIKEY} from '../../../APIKEY.json'
 import {startMainTabs} from '../../screens/startMainTabs'
 import {uiStartLoading, uiStopLoading} from './index'
@@ -16,23 +16,37 @@ export const tryAuth = (authData, authMode) => {
       headers: {
         "Content-Type": "application/json"
       }
-    })
-    .catch(err => {
+    }).catch(err => {
       console.log(err)
       alert('authentication failed!')
       dispatch(uiStopLoading())
-    })
-    .then(res => {
+    }).then(res => {
       dispatch(uiStopLoading())
       return res.json()
-    })
-    .then(parsedRes => {
+    }).then(parsedRes => {
       console.log('parsedRes', parsedRes)
-      if (parsedRes.error) {
-        alert("Authenticaion error: " + parsedRes.error.message)
+      if (!parsedRes.idToken) {
+        alert("Authentication error: " + parsedRes.error.message)
       } else {
+        dispatch(authSetToken(parsedRes.idToken))
         startMainTabs()
       }
     })
+  }
+}
+
+export const authSetToken = token => ({type: AUTH_SET_TOKEN, token})
+
+export const authGetToken = () => {
+  return (dispatch, getState) => {
+    const promise = new Promise((resolve, reject) => {
+      const token = getState().auth.token
+      if (!token) {
+        reject()
+      } else {
+        resolve(token)
+      }
+    })
+    return promise
   }
 }
