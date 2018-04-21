@@ -2,10 +2,12 @@ import {createStore, combineReducers, compose, applyMiddleware} from 'redux'
 import placesReducer from './reducers/places'
 import thunk from 'redux-thunk'
 import ui from './reducers/ui'
+import auth from './reducers/auth'
 
 const rootReducer = combineReducers({
   places: placesReducer,
-  ui
+  ui,
+  auth
 })
 
 let composeEnhancers = compose
