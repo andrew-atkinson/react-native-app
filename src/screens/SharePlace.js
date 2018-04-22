@@ -157,12 +157,12 @@ const styles = StyleSheet.create({
   }
 })
 
-const MapStateToProps = state => ({
+const mapStateToProps = state => ({
   isLoading: state.ui.isLoading
 })
 
-const MapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   onAddPlace: (placeName, location, image) => dispatch(addPlace(placeName, location, image))
 })
 
-export default connect(MapStateToProps, MapDispatchToProps)(SharePlaceScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(SharePlaceScreen)
