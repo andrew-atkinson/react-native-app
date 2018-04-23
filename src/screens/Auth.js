@@ -20,7 +20,7 @@ import MainText from '../components/UI/MainText'
 import ButtonWithBackground from '../components/UI/ButtonWithBackground'
 import imageBackground from '../assets/bg.jpg'
 import validate from '../utility/validation'
-import {tryAuth} from '../store/actions/index'
+import {tryAuth, authAutoSignin} from '../store/actions/index'
 
 class AuthScreen extends Component {
   state = {
@@ -61,6 +61,10 @@ class AuthScreen extends Component {
 
   componentWillUnmount() {
     Dimensions.removeEventListener("change", this.updateStyles)
+  }
+
+  componentDidMount() {
+    this.props.onAuthAutoSignin()
   }
 
   updateStyles = dims => {
@@ -265,7 +269,12 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapDispatchToProps = dispatch => ({onTryAuth: (authData, authMode) => dispatch(tryAuth(authData, authMode))})
+const mapDispatchToProps = dispatch => (
+  {
+    onTryAuth: (authData, authMode) => dispatch(tryAuth(authData, authMode)),
+    onAuthAutoSignin: () => dispatch(authAutoSignin())
+  }
+)
 
 
 const mapStateToProps = state => ({
