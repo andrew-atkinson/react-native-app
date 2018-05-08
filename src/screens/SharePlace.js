@@ -11,7 +11,7 @@ import {
 import {connect} from 'react-redux'
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 
-import {addPlace} from '../store/actions';
+import {addPlace} from '../store/actions'
 
 import PlaceInput from '../components/PlaceInput'
 import MainText from '../components/UI/MainText'
