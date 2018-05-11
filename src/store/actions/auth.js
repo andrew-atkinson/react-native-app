@@ -42,9 +42,8 @@ export const authStoreToken = (token, expiresIn) => dispatch => {
   dispatch(authSetToken(token))
   const now = new Date()
   const expirationDate = now.getTime() + expiresIn * 1000
-  console.log("Now: ", now, new Date(expirationDate))
-  AsyncStorage.setItem('places:token', token)
-  AsyncStorage.setItem('expiration:date', expirationDate.toString())
+  AsyncStorage.setItem('places-token', token)
+  AsyncStorage.setItem('expiration-date', expirationDate.toString())
 }
 
 export const authGetToken = () => (dispatch, getState) => {
@@ -52,17 +51,18 @@ export const authGetToken = () => (dispatch, getState) => {
     const token = getState().auth.token // checks for token stored in redux
     if (!token) {
       let fetchedToken;
-      AsyncStorage.getItem('places:token') // if not, checks for token stored in global react native
+      // if not, checks for token stored in global react native
+      AsyncStorage.getItem('places-token')
       .catch(() => reject())
       .then(storageToken => {
         fetchedToken = storageToken
-        return !storageToken ? reject() : AsyncStorage.getItem('expiration:date') // if there's a global react native token, call the expiration
+        return !storageToken ? reject() : AsyncStorage.getItem('expiration-date') // if there's a global react native token, call the expiration
       })
       .then(expirationDate => { // potentially, this COULD be null... 
         const parsedExpirationDate = new Date(parseInt(expirationDate)) // parses a date from the expirationDate
         const now = new Date()
         if (parsedExpirationDate > now) { // checks if still valid (not valid if Null)
-          dispatch(authSetToken(fetchedToken)) // sets token on Redux
+          // dispatch(authSetToken(fetchedToken)) // sets token on Redux
           resolve(fetchedToken) // resolves with global react native token
         } else {
           reject()
@@ -70,12 +70,13 @@ export const authGetToken = () => (dispatch, getState) => {
       })
       .catch(err => reject())
     } else {
+      console.log("I'm in resolved with token", token)
       resolve(token) // resolve with a redux token resolve, if it exists
     }
   })
-  .catch(err => { // if the promise has an error, remove the AsyncStorage. 
-    AsyncStorage.removeItem('expiration:date')
-    AsyncStorage.removeItem('places:token')
+  promise.catch(err => { // if the promise has an error, remove the AsyncStorage. 
+    AsyncStorage.removeItem('expiration-date')
+    AsyncStorage.removeItem('places-token')
   })
   return promise //returns whatever is resolved/rejected
 }
