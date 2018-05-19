@@ -7,12 +7,15 @@ import {AsyncStorage} from 'react-native'
 
 export const tryAuth = (authData, authMode) => dispatch => {
   dispatch(uiStartLoading())
-  let url = authMode === "signUp" 
-            ? "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=" + APIKEY
-            : "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=" + APIKEY
-  fetch(url, {
+  fetch(authMode === "signUp" 
+                 ? "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=" + APIKEY 
+                 : "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=" + APIKEY, {
     method: "POST",
-    body: JSON.stringify({email: authData.email, password: authData.password, returnSecureToken: true}),
+    body : JSON.stringify({
+      email: authData.email, 
+      password: authData.password, 
+      returnSecureToken: true
+    }),
     headers: {
       "Content-Type": "application/json"
     }
