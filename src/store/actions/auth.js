@@ -78,8 +78,7 @@ export const authGetToken = () => (dispatch, getState) => {
     }
   })
   promise.catch(err => { // if the promise has an error, remove the AsyncStorage. 
-    AsyncStorage.removeItem('expiration-date')
-    AsyncStorage.removeItem('places-token')
+    dispatch(authClearStorage())
   })
   return promise //returns whatever is resolved/rejected
 }
@@ -90,4 +89,9 @@ export const authAutoSignin = () => dispatch => {
     startMainTabs()
   })
   .catch(err => console.log('tokenless: failed to fetch token!'))
+}
+
+export const authClearStorage = () => dispatch => {
+  AsyncStorage.removeItem('expiration-date')
+  AsyncStorage.removeItem('places-token')
 }
