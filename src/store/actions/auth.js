@@ -30,10 +30,11 @@ export const tryAuth = (authData, authMode) => dispatch => {
     return res.json()
   })
   .then(parsedRes => {
+    console.log('successful response object:', parsedRes)
     if (!parsedRes.idToken) {
       alert("Authentication error: " + parsedRes.error.message)
     } else {
-      dispatch(authStoreToken(parsedRes.idToken, parsedRes.expiresIn))
+      dispatch(authStoreToken(parsedRes.idToken, parsedRes.expiresIn, parsedRes.refreshToken))
       startMainTabs()
     }
   })
@@ -41,27 +42,32 @@ export const tryAuth = (authData, authMode) => dispatch => {
 
 export const authSetToken = token => ({type: AUTH_SET_TOKEN, token})
 
-export const authStoreToken = (token, expiresIn) => dispatch => {
+export const authStoreToken = (token, expiresIn, refreshToken) => dispatch => {
   dispatch(authSetToken(token))
   const now = new Date()
-  const expirationDate = now.getTime() + expiresIn * 1000
+  const expirationDate = now.getTime() + expiresIn * 20
   AsyncStorage.setItem('places-token', token)
   AsyncStorage.setItem('expiration-date', expirationDate.toString())
+  AsyncStorage.setItem('places-refreshToken', refreshToken)
 }
 
 export const authGetToken = () => (dispatch, getState) => {
   const promise = new Promise((resolve, reject) => {
     const token = getState().auth.token // checks for token stored in redux
+    console.log('token in redux', token)
     if (!token) {
+      console.log('hits !token')
       let fetchedToken;
       // if not, checks for token stored in global react native
       AsyncStorage.getItem('places-token')
       .catch(() => reject())
       .then(storageToken => {
         fetchedToken = storageToken
+        console.log('gets the places token, ', fetchedToken)
         return !storageToken ? reject() : AsyncStorage.getItem('expiration-date') // if there's a global react native token, call the expiration
       })
       .then(expirationDate => { // potentially, this COULD be null... 
+        console('hits the expiration date block')
         const parsedExpirationDate = new Date(parseInt(expirationDate)) // parses a date from the expirationDate
         const now = new Date()
         if (parsedExpirationDate > now) { // checks if still valid (not valid if Null)
@@ -77,10 +83,35 @@ export const authGetToken = () => (dispatch, getState) => {
       resolve(token) // resolve with a redux token resolve, if it exists
     }
   })
-  promise.catch(err => { // if the promise has an error, remove the AsyncStorage. 
-    dispatch(authClearStorage())
+  return promise.catch(err => { // if the promise has an error, remove the AsyncStorage. 
+    return AsyncStorage.getItem('places-refreshToken')
+    .then(refreshToken => {
+      console.log('refreshToken in catch, ', refreshToken)
+      return fetch("https://securetoken.googleapis.com/v1/token?key=" + APIKEY, {
+        method: "POST",
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: "grant_type=refresh_token&refresh_token=" + refreshToken
+      })
+    })
+    .then(res => res.json())
+    .then(parsedRes => {
+      if(parsedRes.id_token) {
+        console.log('a new refresh token!', parsedRes.id_token)
+        dispatch(authStoreToken(parsedRes.id_token, parsedRes.expires_in, parsedRes.refresh_token))
+        return parsedRes.id_token
+      } else {
+        dispatch(authClearStorage())
+      }
+    })
+    .then(token => {
+      if (!token) {
+        console.log('hits the new error')
+        throw(new Error())
+      } else {
+        return token
+      }
+    })
   })
-  return promise //returns whatever is resolved/rejected
 }
 
 export const authAutoSignin = () => dispatch => {
