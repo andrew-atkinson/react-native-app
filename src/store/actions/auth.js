@@ -45,7 +45,7 @@ export const authSetToken = token => ({type: AUTH_SET_TOKEN, token})
 export const authStoreToken = (token, expiresIn, refreshToken) => dispatch => {
   dispatch(authSetToken(token))
   const now = new Date()
-  const expirationDate = now.getTime() + expiresIn * 20
+  const expirationDate = now.getTime() + expiresIn * 1000
   AsyncStorage.setItem('places-token', token)
   AsyncStorage.setItem('expiration-date', expirationDate.toString())
   AsyncStorage.setItem('places-refreshToken', refreshToken)
