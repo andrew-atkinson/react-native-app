@@ -76,13 +76,11 @@ class AuthScreen extends Component {
   }
 
   switchAuthModeHandler = () => {
-    this.setState(prevState => {
-      return {
+    this.setState(prevState => ({
       authMode: prevState.authMode === 'login'
         ? 'signUp'
         : 'login'
-      }
-    })
+    }))
   }
 
   authHandler = () => {
