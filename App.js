@@ -16,7 +16,7 @@ Navigation.registerComponent("places.AuthScreen", () => AuthScreen, store, Provi
 Navigation.registerComponent("places.FindPlaceScreen", () => FindPlaceScreen, store, Provider)
 Navigation.registerComponent("places.SharePlaceScreen", () => SharePlaceScreen, store, Provider)
 Navigation.registerComponent("places.PlaceDetailScreen", () => PlaceDetailScreen, store, Provider)
-Navigation.registerComponent("places.SideDrawerScreen", () => SideDrawerScreen)
+Navigation.registerComponent("places.SideDrawerScreen", () => SideDrawerScreen, store, Provider)
 
 
 //start an app

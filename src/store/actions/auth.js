@@ -1,9 +1,10 @@
-import {TRY_AUTH, AUTH_SET_TOKEN} from './actionTypes'
+import {TRY_AUTH, AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN} from './actionTypes'
 import {APIKEY} from '../../../APIKEY.json'
 import {startMainTabs} from '../../screens/startMainTabs'
 import {uiStartLoading, uiStopLoading} from './index'
 
 import {AsyncStorage} from 'react-native'
+import {Navigation} from 'react-native-navigation'
 
 export const tryAuth = (authData, authMode) => dispatch => {
   dispatch(uiStartLoading())
@@ -71,7 +72,7 @@ export const authGetToken = () => (dispatch, getState) => {
         const parsedExpirationDate = new Date(parseInt(expirationDate)) // parses a date from the expirationDate
         const now = new Date()
         if (parsedExpirationDate > now) { // checks if still valid (not valid if Null)
-          // dispatch(authSetToken(fetchedToken)) // sets token on Redux
+          dispatch(authSetToken(fetchedToken)) // sets token on Redux
           resolve(fetchedToken) // resolves with global react native token
         } else {
           reject()
@@ -83,7 +84,7 @@ export const authGetToken = () => (dispatch, getState) => {
       resolve(token) // resolve with a redux token resolve, if it exists
     }
   })
-  return promise.catch(err => { // if the promise has an error, remove the AsyncStorage. 
+  return promise.catch(err => { // if the promise has an error 
     return AsyncStorage.getItem('places-refreshToken')
     .then(refreshToken => {
       console.log('refreshToken in catch, ', refreshToken)
@@ -96,7 +97,7 @@ export const authGetToken = () => (dispatch, getState) => {
     .then(res => res.json())
     .then(parsedRes => {
       if(parsedRes.id_token) {
-        console.log('a new refresh token!', parsedRes.id_token)
+        console.log('a new refreshed id_token!', parsedRes.id_token)
         dispatch(authStoreToken(parsedRes.id_token, parsedRes.expires_in, parsedRes.refresh_token))
         return parsedRes.id_token
       } else {
@@ -125,4 +126,18 @@ export const authAutoSignin = () => dispatch => {
 export const authClearStorage = () => dispatch => {
   AsyncStorage.removeItem('expiration-date')
   AsyncStorage.removeItem('places-token')
+  return AsyncStorage.removeItem('places-refreshToken')
 }
+
+export const authLogout = () => dispatch => {
+  dispatch(authClearStorage())
+  .then(() => Navigation.startSingleScreenApp({
+    screen: {
+      screen: "places.AuthScreen",
+      title: "Login"
+    }
+  }))
+  dispatch(authRemoveToken())
+}
+
+export const authRemoveToken = () => ({type: AUTH_REMOVE_TOKEN})

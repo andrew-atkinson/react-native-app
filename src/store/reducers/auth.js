@@ -1,4 +1,4 @@
-import {AUTH_SET_TOKEN} from '../actions/actionTypes'
+import {AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN} from '../actions/actionTypes'
 
 const initalState = {
   token: null
@@ -10,6 +10,11 @@ export const reducer = (state = initalState, action) => {
       return {
         ...state,
         token: action.token
+      }
+    case AUTH_REMOVE_TOKEN:
+      return {
+        ...state,
+        token: null
       }
     default:
       return state
