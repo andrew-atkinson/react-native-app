@@ -41,12 +41,12 @@ export const tryAuth = (authData, authMode) => dispatch => {
   })
 }
 
-export const authSetToken = token => ({type: AUTH_SET_TOKEN, token})
+export const authSetToken = (token, expiration) => ({type: AUTH_SET_TOKEN, token, expiration})
 
 export const authStoreToken = (token, expiresIn, refreshToken) => dispatch => {
-  dispatch(authSetToken(token))
   const now = new Date()
   const expirationDate = now.getTime() + expiresIn * 1000
+  dispatch(authSetToken(token, expirationDate))
   AsyncStorage.setItem('places-token', token)
   AsyncStorage.setItem('expiration-date', expirationDate.toString())
   AsyncStorage.setItem('places-refreshToken', refreshToken)
@@ -55,8 +55,9 @@ export const authStoreToken = (token, expiresIn, refreshToken) => dispatch => {
 export const authGetToken = () => (dispatch, getState) => {
   const promise = new Promise((resolve, reject) => {
     const token = getState().auth.token // checks for token stored in redux
+    const expiration = getState().auth.expiration
     console.log('token in redux', token)
-    if (!token) {
+    if (!token || new Date(expiration) <= new Date()) {
       console.log('hits !token')
       let fetchedToken;
       // if not, checks for token stored in global react native
