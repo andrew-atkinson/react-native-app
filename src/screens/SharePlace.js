@@ -13,6 +13,8 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 
 import {addPlace} from '../store/actions'
 
+import {startAddPlace} from '../store/actions'
+
 import PlaceInput from '../components/PlaceInput'
 import MainText from '../components/UI/MainText'
 import HeadingText from '../components/UI/HeadingText'
@@ -23,7 +25,7 @@ import validate from '../utility/validation'
 
 class SharePlaceScreen extends Component {
   static navigatorStyle = {
-    navBarButtonColor: "orange"
+    navBarButtonColor: 'orange'
   }
 
   constructor(props) {
@@ -33,7 +35,7 @@ class SharePlaceScreen extends Component {
 
   reset = () => {
     this.setState({
-      placeName: "",
+      placeName: '',
       controls: {
         valid: false,
         touched: false,
@@ -56,10 +58,15 @@ class SharePlaceScreen extends Component {
     this.reset()
   }
 
+  componentDidUpdate(){
+    if (this.props.placeAdded) this.props.navigator.switchToTab({tabIndex: 0})
+  }
+
   onNavigatorEvent = e => {
-    if (e.type === "NavBarButtonPress" && e.id === "SideDrawerToggle") {
-      this.props.navigator.toggleDrawer({side: "left"})
-    }
+    if (e.type === 'ScreenChangedEvent' && e.id === 'eventWillAppear')
+      this.props.startAddPlace()
+    if (e.type === 'NavBarButtonPress' && e.id === 'SideDrawerToggle')
+      this.props.navigator.toggleDrawer({side: 'left'})
   }
 
   placeNameChangedHandler = val => {
@@ -108,7 +115,7 @@ class SharePlaceScreen extends Component {
   render() {
     let submitButton = (
       <Button 
-        title="Share the Place" 
+        title='Share the Place' 
         onPress={this.placeAddedHandler}
         disabled={
           !this.state.controls.valid ||
@@ -154,18 +161,18 @@ class SharePlaceScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center"
+    alignItems: 'center'
   },
   placeholder: {
     borderWidth: 1,
-    borderColor: "black",
-    backgroundColor: "#eee",
-    width: "80%",
+    borderColor: 'black',
+    backgroundColor: '#eee',
+    width: '80%',
     height: 150
   },
   previewImage: {
-    width: "100%",
-    height: "100%"
+    width: '100%',
+    height: '100%'
   },
   button: {
     margin: 8
@@ -173,11 +180,13 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  isLoading: state.ui.isLoading
+  isLoading: state.ui.isLoading,
+  placeAdded: state.places.placeAdded
 })
 
 const mapDispatchToProps = dispatch => ({
-  onAddPlace: (placeName, location, image) => dispatch(addPlace(placeName, location, image))
+  onAddPlace: (placeName, location, image) => dispatch(addPlace(placeName, location, image)),
+  onStartAddPlace: () => dispatch(startAddPlace())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SharePlaceScreen)
