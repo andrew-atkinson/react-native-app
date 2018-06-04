@@ -1,7 +1,18 @@
 import {SET_PLACES, DELETE_PLACE, PLACE_ADDED, START_ADD_PLACE} from './actionTypes'
 import {uiStopLoading, uiStartLoading, authGetToken} from './index'
 
+export const setPlaces = places => ({type: SET_PLACES, places})
+export const deletePlaceAction = key => ({type: DELETE_PLACE, key})
+export const placeAdded = () => ({type: PLACE_ADDED})
 export const startAddPlace = () => ({type: START_ADD_PLACE})
+
+const isOk = res => {
+  if (res.ok) {
+    return res.json()
+  } else {
+    throw(new Error())
+  }
+}
 
 export const addPlace = (placeName, location, image) => {
   return dispatch => {
@@ -27,20 +38,21 @@ export const addPlace = (placeName, location, image) => {
       alert("Imagestore: Something went wrong, please try again!")
       dispatch(uiStopLoading())
     })
-    .then(res => res.json())
+    .then(res => isOk(res))
     .then(parsedRes => {
       console.log("parsedRes from imagestore:", parsedRes)
       const placeData = {
         name: placeName,
         location,
-        image: parsedRes.imageUrl
+        image: parsedRes.imageUrl,
+        imagePath: parsedRes.imagePath
       }
       return fetch('https://react-native-places.firebaseio.com/places.json?auth=' + authToken, {
         method: 'POST',
         body: JSON.stringify(placeData)
       })
     })
-    .then(res => res.json())
+    .then(res => isOk(res))
     .then(parsedRes => {
       console.log(parsedRes)
       dispatch(uiStopLoading())
@@ -54,14 +66,12 @@ export const addPlace = (placeName, location, image) => {
   }
 }
 
-export const placeAdded = () => ({type: PLACE_ADDED})
-  
 export const getPlaces = () => {
   return dispatch => 
   dispatch(authGetToken())
   .then(token => fetch('https://react-native-places.firebaseio.com/places.json?auth=' + token))
   .catch(err => alert('no valid token found:' + err))
-  .then(res => res.json())
+  .then(res => isOk(res))
   .then(parsedRes => {
     let places = []
     for (let key in parsedRes) {
@@ -81,22 +91,19 @@ export const getPlaces = () => {
   })
 }
 
-export const setPlaces = places => {
-  return {type: SET_PLACES, places}
-}
-
 export const deletePlace = key => {
   return dispatch => {
     dispatch(uiStartLoading())
     dispatch(authGetToken())
     .then(token => {
+      console.log('token from delete place', token)
       dispatch(deletePlaceAction(key))
-      return fetch('https://react-native-places.firebaseio.com/' + key + '.json?auth=' + token, {method: 'DELETE'})
+
+      return fetch('https://react-native-places.firebaseio.com/places/' + key + '.json?auth=' + token, {method: 'DELETE'})
     })
     .catch(err => alert('no valid token found:' + err))
-    .then(res => res.json())
     .then(parsedRes => {
-      console.log("done...")
+      console.log("done...", parsedRes)
       dispatch(uiStopLoading())
     })
     .catch(err => {
@@ -106,5 +113,3 @@ export const deletePlace = key => {
     })
   }
 }
-
-export const deletePlaceAction = key => ({type: DELETE_PLACE, key})
