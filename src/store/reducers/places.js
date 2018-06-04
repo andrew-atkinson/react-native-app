@@ -11,14 +11,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         places: action.places,
-
       }
     case DELETE_PLACE:
       return {
         ...state,
-        places: state.places.filter(place => {
-            return place.key != action.key
-          })
+        places: state.places.filter(place => { place.key != action.key })
       }
     case PLACE_ADDED: 
       return {
