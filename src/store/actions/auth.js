@@ -56,20 +56,16 @@ export const authGetToken = () => (dispatch, getState) => {
   const promise = new Promise((resolve, reject) => {
     const token = getState().auth.token // checks for token stored in redux
     const expiration = getState().auth.expiration
-    console.log('token in redux', token)
     if (!token || new Date(expiration) <= new Date()) {
-      console.log('hits !token')
       let fetchedToken;
       // if not, checks for token stored in global react native
       AsyncStorage.getItem('places-token')
       .catch(() => reject())
       .then(storageToken => {
         fetchedToken = storageToken
-        console.log('gets the places token, ', fetchedToken)
         return !storageToken ? reject() : AsyncStorage.getItem('expiration-date') // if there's a global react native token, call the expiration
       })
       .then(expirationDate => { // potentially, this COULD be null... 
-        console('hits the expiration date block')
         const parsedExpirationDate = new Date(parseInt(expirationDate)) // parses a date from the expirationDate
         const now = new Date()
         if (parsedExpirationDate > now) { // checks if still valid (not valid if Null)
@@ -81,14 +77,12 @@ export const authGetToken = () => (dispatch, getState) => {
       })
       .catch(err => reject())
     } else {
-      console.log("I'm in resolved with token", token)
       resolve(token) // resolve with a redux token resolve, if it exists
     }
   })
   return promise.catch(err => { // if the promise has an error 
     return AsyncStorage.getItem('places-refreshToken')
     .then(refreshToken => {
-      console.log('refreshToken in catch, ', refreshToken)
       return fetch("https://securetoken.googleapis.com/v1/token?key=" + APIKEY, {
         method: "POST",
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
@@ -98,7 +92,6 @@ export const authGetToken = () => (dispatch, getState) => {
     .then(res => res.json())
     .then(parsedRes => {
       if(parsedRes.id_token) {
-        console.log('a new refreshed id_token!', parsedRes.id_token)
         dispatch(authStoreToken(parsedRes.id_token, parsedRes.expires_in, parsedRes.refresh_token))
         return parsedRes.id_token
       } else {
@@ -107,7 +100,6 @@ export const authGetToken = () => (dispatch, getState) => {
     })
     .then(token => {
       if (!token) {
-        console.log('hits the new error')
         throw(new Error())
       } else {
         return token
