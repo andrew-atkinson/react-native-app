@@ -4,9 +4,11 @@ import {connect} from 'react-redux'
 import PlaceList from '../components/PlaceList'
 import {getPlaces} from '../store/actions/index'
 
+import { BACKGROUND_BLUE, HIGHLIGHT } from '../assets/color'
+
 class FindPlaceScreen extends Component {
   static navigatorStyle = {
-    navBarButtonColor: "orange"
+    navBarButtonColor: HIGHLIGHT
   }
 
   state = {
@@ -87,15 +89,16 @@ class FindPlaceScreen extends Component {
             opacity: this.state.fadeList
           }}
         >
-          <PlaceList 
+          <PlaceList
             places={this.props.places} 
-            onItemSelected={this.itemSelectedHandler}/
-          >
+            onItemSelected={this.itemSelectedHandler}
+            style={{backgroundColor: BACKGROUND_BLUE}}
+          />
         </Animated.View>
       )
     } 
     return (
-      <View style={this.state.placesLoaded ? null : styles.buttonContainer}>
+      <View style={[this.state.placesLoaded ? null : styles.buttonContainer, styles.basic]}>
         {content}
       </View>
     )
@@ -103,19 +106,24 @@ class FindPlaceScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  basic: {
+    height:'100%',
+    backgroundColor: BACKGROUND_BLUE},
   buttonContainer:{
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    height:'100%',
+    backgroundColor: BACKGROUND_BLUE
   },
   searchButton : {
-    borderColor : "orange",
+    borderColor : HIGHLIGHT,
     borderWidth: 3,
     borderRadius: 50,
     padding: 20,
   },
   searchText: {
-    color: "orange",
+    color: HIGHLIGHT,
     fontWeight: "bold",
     fontSize: 26
   }

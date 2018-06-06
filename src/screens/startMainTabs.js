@@ -1,6 +1,7 @@
 import {Navigation} from 'react-native-navigation'
 import Icon from 'react-native-vector-icons/Ionicons'
 import {Platform} from 'react-native'
+import { BACKGROUND_BLUE, LISTITEM_BLUE, HIGHLIGHT, LOWLIGHT, WHITE } from '../assets/color';
 
 export const startMainTabs = () => {
   Promise.all([
@@ -41,10 +42,18 @@ export const startMainTabs = () => {
         }
       ],
       tabsStyle: {
-        tabBarSelectedButtonColor: "orange"
+        tabBarSelectedButtonColor: HIGHLIGHT,
+        tabBarButtonColor: LOWLIGHT,
+        tabBarBackgroundColor: BACKGROUND_BLUE,
+        tabBarLabelColor: LOWLIGHT,
+        tabBarSelectedLabelColor: HIGHLIGHT
       },
       appStyle: {
-        tabBarSelectedButtonColor: "orange"
+        tabBarSelectedButtonColor: LISTITEM_BLUE,
+        navBarBackgroundColor: BACKGROUND_BLUE,
+        navBarTextFontFamily: 'Didot',
+        navBarTextFontSize: 30,
+        navBarTextColor: WHITE
       },
       drawer: {
         left: {
