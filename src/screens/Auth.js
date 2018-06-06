@@ -246,6 +246,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: "80%"
+
   },
   input: {
     borderColor: "#bbb",

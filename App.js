@@ -8,6 +8,7 @@ import PlaceDetailScreen from './src/screens/PlaceDetail'
 import SideDrawerScreen from './src/screens/SideDrawer'
 
 import configureStore from './src/store/config'
+import { BACKGROUND_BLUE, WHITE } from './src/assets/color'
 
 const store = configureStore()
 
@@ -23,6 +24,13 @@ Navigation.registerComponent("places.SideDrawerScreen", () => SideDrawerScreen, 
 Navigation.startSingleScreenApp({
   screen: {
     screen: "places.AuthScreen",
-    title: "Login"
+    title: "Login",
+    navigatorStyle:{
+      navBarBackgroundColor: BACKGROUND_BLUE,
+      navBarTextColor: WHITE,
+      navigationBarColor: BACKGROUND_BLUE,
+      navBarTextFontFamily: 'Merriweather-Regular',
+      navBarTextFontSize: 30
+    }
   }
 })

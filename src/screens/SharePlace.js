@@ -22,10 +22,11 @@ import PickImage from '../components/PickImage'
 import PickLocation from '../components/PickLocation'
 
 import validate from '../utility/validation'
+import { HIGHLIGHT } from '../assets/color';
 
 class SharePlaceScreen extends Component {
   static navigatorStyle = {
-    navBarButtonColor: 'orange'
+    navBarButtonColor: HIGHLIGHT
   }
 
   constructor(props) {
@@ -63,8 +64,8 @@ class SharePlaceScreen extends Component {
   }
 
   onNavigatorEvent = e => {
-    if (e.type === 'ScreenChangedEvent' && e.id === 'eventWillAppear')
-      this.props.startAddPlace()
+    if (e.type === 'ScreenChangedEvent' && e.id === 'willAppear')
+      this.props.onStartAddPlace()
     if (e.type === 'NavBarButtonPress' && e.id === 'SideDrawerToggle')
       this.props.navigator.toggleDrawer({side: 'left'})
   }
