@@ -49,9 +49,12 @@ export const startMainTabs = () => {
         tabBarSelectedLabelColor: HIGHLIGHT
       },
       appStyle: {
-        tabBarSelectedButtonColor: LISTITEM_BLUE,
+        tabBarSelectedButtonColor: HIGHLIGHT,
+        tabBarButtonColor: LOWLIGHT,
         navBarBackgroundColor: BACKGROUND_BLUE,
-        navBarTextFontFamily: 'Didot',
+        tabBarBackgroundColor: BACKGROUND_BLUE,
+        navigationBarColor: BACKGROUND_BLUE,
+        navBarTextFontFamily: 'Merriweather-Regular',
         navBarTextFontSize: 30,
         navBarTextColor: WHITE
       },

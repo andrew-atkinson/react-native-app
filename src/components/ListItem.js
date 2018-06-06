@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     width:30
   },
   textItem: {
-    fontFamily:'Didot',
+    fontFamily:'Merriweather-Regular',
     color: WHITE,
     fontSize: 30 
   }
