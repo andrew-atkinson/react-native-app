@@ -1,0 +1,5 @@
+export const BACKGROUND_BLUE = '#569AD8'
+export const LISTITEM_BLUE = '#5CA7E5'
+export const LOWLIGHT = '#366578'
+export const HIGHLIGHT = '#8EDCFC'
+export const WHITE = '#ffffff'
