@@ -30,7 +30,8 @@ Navigation.startSingleScreenApp({
       navBarTextColor: WHITE,
       navigationBarColor: BACKGROUND_BLUE,
       navBarTextFontFamily: 'Merriweather-Regular',
-      navBarTextFontSize: 30
+      navBarTextFontSize: 30,
+      navBarTitleTextCentered: true
     }
   }
 })
