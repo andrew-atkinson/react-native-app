@@ -56,7 +56,9 @@ export const startMainTabs = () => {
         navigationBarColor: BACKGROUND_BLUE,
         navBarTextFontFamily: 'Merriweather-Regular',
         navBarTextFontSize: 30,
-        navBarTextColor: WHITE
+        navBarTextColor: WHITE,
+        screenBackgroundColor: LISTITEM_BLUE,
+        navBarTitleTextCentered: true
       },
       drawer: {
         left: {
