@@ -125,7 +125,8 @@ const styles = StyleSheet.create({
   searchText: {
     color: HIGHLIGHT,
     fontWeight: "bold",
-    fontSize: 26
+    fontSize: 26,
+    fontFamily: 'Merriweather-Light'
   }
 })
 
