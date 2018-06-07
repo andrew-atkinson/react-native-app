@@ -1,10 +1,10 @@
+import {AsyncStorage} from 'react-native'
+import {Navigation} from 'react-native-navigation'
+
 import {TRY_AUTH, AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN} from './actionTypes'
 import {APIKEY} from '../../../APIKEY.json'
 import {startMainTabs} from '../../screens/startMainTabs'
 import {uiStartLoading, uiStopLoading} from './index'
-
-import {AsyncStorage} from 'react-native'
-import {Navigation} from 'react-native-navigation'
 
 export const tryAuth = (authData, authMode) => dispatch => {
   dispatch(uiStartLoading())
@@ -31,7 +31,6 @@ export const tryAuth = (authData, authMode) => dispatch => {
     return res.json()
   })
   .then(parsedRes => {
-    console.log('successful response object:', parsedRes)
     if (!parsedRes.idToken) {
       alert("Authentication error: " + parsedRes.error.message)
     } else {
@@ -80,15 +79,13 @@ export const authGetToken = () => (dispatch, getState) => {
       resolve(token) // resolve with a redux token resolve, if it exists
     }
   })
-  return promise.catch(err => { // if the promise has an error 
-    return AsyncStorage.getItem('places-refreshToken')
-    .then(refreshToken => {
-      return fetch("https://securetoken.googleapis.com/v1/token?key=" + APIKEY, {
+  return promise.catch(err => AsyncStorage.getItem('places-refreshToken')
+    .then(refreshToken => fetch("https://securetoken.googleapis.com/v1/token?key=" + APIKEY, {
         method: "POST",
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
         body: "grant_type=refresh_token&refresh_token=" + refreshToken
       })
-    })
+    )
     .then(res => res.json())
     .then(parsedRes => {
       if(parsedRes.id_token) {
@@ -105,7 +102,7 @@ export const authGetToken = () => (dispatch, getState) => {
         return token
       }
     })
-  })
+  )
 }
 
 export const authAutoSignin = () => dispatch => {

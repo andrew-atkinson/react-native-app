@@ -48,22 +48,31 @@ class PlaceDetail extends Component {
     return (
       <View
         style={this.state.viewMode === 'landscape'
-        ? styles.landscapeContainer
-        : styles.portraitContainer}>
+          ? styles.landscapeContainer
+          : styles.portraitContainer}
+        >
         <Image
           source={this.props.selectedPlace.image}
           style={this.state.viewMode === 'landscape'
-          ? styles.landscapePlaceImage
-          : styles.portraitPlaceImage}/>
-        <View style={this.state.viewMode === 'landscape' ? styles.landscapeWrapper : styles.portraitWrapper}>
-          <Text style={styles.placeName}>{this.props.selectedPlace.name}</Text>
+            ? styles.landscapePlaceImage
+            : styles.portraitPlaceImage}
+        />
+        <View
+          style={this.state.viewMode === 'landscape' 
+            ? styles.landscapeWrapper 
+            : styles.portraitWrapper}
+        >
+          <Text style={styles.placeName}>
+            {this.props.selectedPlace.name}
+          </Text>
           <TouchableOpacity onPress={this.deletePlaceHandler} style={styles.trash}>
             <Icon
               name={Platform.OS === 'android'
                 ? 'md-trash'
                 : 'ios-trash'}
               color='red'
-              size={30}/>
+              size={30}
+            />
           </TouchableOpacity>
           <MapView
             style={styles.map}
@@ -77,7 +86,7 @@ class PlaceDetail extends Component {
               * 0.0122
             }}
           >
-            <MapView.Marker coordinate={this.props.selectedPlace.location} />
+            <MapView.Marker coordinate={this.props.selectedPlace.location}/>
           </MapView>
         </View>
       </View>
@@ -125,10 +134,6 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onDeletedPlace: key => dispatch(deletePlace(key))
-  }
-}
+const mapDispatchToProps = dispatch => ({onDeletedPlace: key => dispatch(deletePlace(key))})
 
 export default connect(null, mapDispatchToProps)(PlaceDetail)
