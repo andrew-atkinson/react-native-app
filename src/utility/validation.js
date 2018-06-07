@@ -21,20 +21,12 @@ const validate = (val, rules, connectedValue) => {
   return isValid
 }
 
-const emailValidator = val => {
-  return /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(val)
-}
+const emailValidator = val => (/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(val))
 
-const minLengthValidator = (val, minLength) => {
-  return val.length >= minLength
-}
+const minLengthValidator = (val, minLength) => val.length >= minLength
 
-const equalToValidator = (val, checkValue) => {
-  return val === checkValue
-}
+const equalToValidator = (val, checkValue) => val === checkValue
 
-const notEmptyValidator = val => {
-  return val.trim() === '' ? false : true
-}
+const notEmptyValidator = val => val.trim() === '' ? false : true
 
 export default validate

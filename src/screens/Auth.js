@@ -18,8 +18,10 @@ import DefaultInput from '../components/UI/DefaultInput'
 import HeadingText from '../components/UI/HeadingText'
 import MainText from '../components/UI/MainText'
 import ButtonWithBackground from '../components/UI/ButtonWithBackground'
+
 import imageBackground from '../assets/bg.jpg'
 import validate from '../utility/validation'
+
 import {tryAuth, authAutoSignin} from '../store/actions/index'
 
 class AuthScreen extends Component {

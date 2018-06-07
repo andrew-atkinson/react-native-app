@@ -34,13 +34,11 @@ export const addPlace = (placeName, location, image) => {
     })
     .catch(err => {
       alert('no valid token found:' + err)
-      console.log('err', err)
       alert("Imagestore: Something went wrong, please try again!")
       dispatch(uiStopLoading())
     })
     .then(res => isOk(res))
     .then(parsedRes => {
-      console.log("parsedRes from imagestore:", parsedRes)
       const placeData = {
         name: placeName,
         location,
@@ -54,12 +52,10 @@ export const addPlace = (placeName, location, image) => {
     })
     .then(res => isOk(res))
     .then(parsedRes => {
-      console.log(parsedRes)
       dispatch(uiStopLoading())
       dispatch(placeAdded())
     })
     .catch(err => {
-      console.log('err', err)
       alert("location: Something went wrong, please try again!")
       dispatch(uiStopLoading())
     })
@@ -87,29 +83,23 @@ export const getPlaces = () => {
   })
   .catch(err => {
     alert("something went wrong...")
-    console.log(err)
   })
 }
 
-export const deletePlace = key => {
-  return dispatch => {
-    dispatch(uiStartLoading())
-    dispatch(authGetToken())
-    .then(token => {
-      console.log('token from delete place', token)
-      dispatch(deletePlaceAction(key))
-
-      return fetch('https://react-native-places.firebaseio.com/places/' + key + '.json?auth=' + token, {method: 'DELETE'})
-    })
-    .catch(err => alert('no valid token found:' + err))
-    .then(parsedRes => {
-      console.log("done...", parsedRes)
-      dispatch(uiStopLoading())
-    })
-    .catch(err => {
-      alert("something went wrong with deleting the entry")
-      console.log(err)
-      dispatch(uiStopLoading())
-    })
-  }
+export const deletePlace = key => dispatch => {
+  dispatch(uiStartLoading())
+  dispatch(authGetToken())
+  .then(token => {
+    dispatch(deletePlaceAction(key))
+    return fetch('https://react-native-places.firebaseio.com/places/' + key + '.json?auth=' + token, {method: 'DELETE'})
+  })
+  .catch(err => alert('no valid token found:' + err))
+  .then(parsedRes => {
+    dispatch(uiStopLoading())
+  })
+  .catch(err => {
+    alert("something went wrong with deleting the entry")
+    dispatch(uiStopLoading())
+  })
 }
+
