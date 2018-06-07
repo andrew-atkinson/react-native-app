@@ -134,9 +134,6 @@ class SharePlaceScreen extends Component {
     return (
       <KeyboardAwareScrollView>
           <View style={styles.container}>
-            <MainText>
-              <HeadingText>Share a place with us!</HeadingText>
-            </MainText>
             <PickImage 
               onImagePicked={this.imagePickedHandler}
               ref={ref => (this.imagePicker = ref)}
