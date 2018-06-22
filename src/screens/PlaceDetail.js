@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {
   View,
   Text,
-  Button,
   Image,
   StyleSheet,
   TouchableOpacity,
@@ -81,9 +80,7 @@ class PlaceDetail extends Component {
               latitude:this.props.selectedPlace.location.latitude,
               latitudeDelta: 0.0122,
               longitudeDelta: 
-              Dimensions.get('window').width 
-              / Dimensions.get('window').height 
-              * 0.0122
+              Dimensions.get('window').width / Dimensions.get('window').height * 0.0122
             }}
           >
             <MapView.Marker coordinate={this.props.selectedPlace.location}/>
