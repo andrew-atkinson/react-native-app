@@ -1,13 +1,5 @@
 import React, {Component} from 'react'
-import {
-  View,
-  Text,
-  Button,
-  TextInput,
-  StyleSheet,
-  ScrollView,
-  ActivityIndicator
-} from 'react-native'
+import {View, Button, StyleSheet, ActivityIndicator} from 'react-native'
 import {connect} from 'react-redux'
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 
@@ -15,13 +7,11 @@ import {addPlace} from '../store/actions'
 import {startAddPlace} from '../store/actions'
 
 import PlaceInput from '../components/PlaceInput'
-import MainText from '../components/UI/MainText'
-import HeadingText from '../components/UI/HeadingText'
 import PickImage from '../components/PickImage'
 import PickLocation from '../components/PickLocation'
 
 import validate from '../utility/validation'
-import { HIGHLIGHT } from '../assets/color';
+import {HIGHLIGHT} from '../assets/color'
 
 class SharePlaceScreen extends Component {
   static navigatorStyle = {
@@ -58,14 +48,15 @@ class SharePlaceScreen extends Component {
     this.reset()
   }
 
-  componentDidUpdate(){
-    if (this.props.placeAdded) this.props.navigator.switchToTab({tabIndex: 0})
+  componentDidUpdate() {
+    if (this.props.placeAdded) 
+      this.props.navigator.switchToTab({tabIndex: 0})
   }
 
   onNavigatorEvent = e => {
-    if (e.type === 'ScreenChangedEvent' && e.id === 'willAppear')
+    if (e.type === 'ScreenChangedEvent' && e.id === 'willAppear') 
       this.props.onStartAddPlace()
-    if (e.type === 'NavBarButtonPress' && e.id === 'SideDrawerToggle')
+    if (e.type === 'NavBarButtonPress' && e.id === 'SideDrawerToggle') 
       this.props.navigator.toggleDrawer({side: 'left'})
   }
 
@@ -76,20 +67,22 @@ class SharePlaceScreen extends Component {
       controls: {
         ...prevState.controls,
         valid: validate(val, this.state.controls.validationRules),
-        touched: true,
+        touched: true
       }
     }))
   }
 
   placeAddedHandler = () => {
-    this.props.onAddPlace(
-      this.state.placeName,
-      this.state.location.value, 
-      this.state.image.value,
-    )
+    this
+      .props
+      .onAddPlace(this.state.placeName, this.state.location.value, this.state.image.value,)
     this.reset()
-    this.imagePicker.reset()
-    this.locationPicker.reset()
+    this
+      .imagePicker
+      .reset()
+    this
+      .locationPicker
+      .reset()
   }
 
   locationPickedHandler = location => {
@@ -103,7 +96,7 @@ class SharePlaceScreen extends Component {
   }
 
   imagePickedHandler = image => {
-    this.setState(prevState =>({
+    this.setState(prevState => ({
       ...prevState,
       image: {
         value: image,
@@ -113,44 +106,32 @@ class SharePlaceScreen extends Component {
   }
 
   render() {
-    let submitButton = (
-      <Button 
-        title='Share the Place' 
-        onPress={this.placeAddedHandler}
-        disabled={
-          !this.state.controls.valid ||
-          !this.state.location.valid ||
-          !this.state.image.valid
-        }
-      />
-    )
+    let submitButton = (<Button
+      title='Share the Place'
+      onPress={this.placeAddedHandler}
+      disabled={!this.state.controls.valid || !this.state.location.valid || !this.state.image.valid}/>)
 
     if (this.props.isLoading) {
-      submitButton = (
-        <ActivityIndicator/>
-      )
+      submitButton = (<ActivityIndicator/>)
     }
     return (
       <KeyboardAwareScrollView>
-          <View style={styles.container}>
-            <PickImage 
-              onImagePicked={this.imagePickedHandler}
-              ref={ref => (this.imagePicker = ref)}
-            />
-            <PickLocation 
-              onPickLocation={this.locationPickedHandler}
-              ref={ref => (this.locationPicker = ref)}
-            />
-              <PlaceInput
-                placeName={this.state.placeName}
-                onChangeText={val => this.placeNameChangedHandler(val)}
-                valid={this.state.controls.valid}
-                touched={this.state.controls.touched}
-              />
-            <View style={styles.button}>
-              {submitButton}
-            </View>
+        <View style={styles.container}>
+          <PickImage
+            onImagePicked={this.imagePickedHandler}
+            ref={ref => (this.imagePicker = ref)}/>
+          <PickLocation
+            onPickLocation={this.locationPickedHandler}
+            ref={ref => (this.locationPicker = ref)}/>
+          <PlaceInput
+            placeName={this.state.placeName}
+            onChangeText={val => this.placeNameChangedHandler(val)}
+            valid={this.state.controls.valid}
+            touched={this.state.controls.touched}/>
+          <View style={styles.button}>
+            {submitButton}
           </View>
+        </View>
       </KeyboardAwareScrollView>
     )
   }
@@ -176,10 +157,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = state => ({
-  isLoading: state.ui.isLoading,
-  placeAdded: state.places.placeAdded
-})
+const mapStateToProps = state => ({isLoading: state.ui.isLoading, placeAdded: state.places.placeAdded})
 
 const mapDispatchToProps = dispatch => ({
   onAddPlace: (placeName, location, image) => dispatch(addPlace(placeName, location, image)),
