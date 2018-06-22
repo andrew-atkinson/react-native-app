@@ -1,7 +1,7 @@
 import {AsyncStorage} from 'react-native'
 import {Navigation} from 'react-native-navigation'
 
-import {TRY_AUTH, AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN} from './actionTypes'
+import {AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN} from './actionTypes'
 import {APIKEY} from '../../../APIKEY.json'
 import {startMainTabs} from '../../screens/startMainTabs'
 import {uiStartLoading, uiStopLoading} from './index'
