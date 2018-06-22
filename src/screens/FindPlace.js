@@ -108,7 +108,8 @@ class FindPlaceScreen extends Component {
 const styles = StyleSheet.create({
   basic: {
     height:'100%',
-    backgroundColor: BACKGROUND_BLUE},
+    backgroundColor: BACKGROUND_BLUE
+  },
   buttonContainer:{
     flex: 1,
     justifyContent: 'center',
