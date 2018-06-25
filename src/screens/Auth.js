@@ -148,7 +148,7 @@ class AuthScreen extends Component {
     if (this.state.viewMode === "portrait") {
       headingText = (
         <MainText>
-          <HeadingText>Please Log in</HeadingText>
+          <HeadingText style={styles.headingText}>Please Log in</HeadingText>
         </MainText>
       )
     }
@@ -230,6 +230,9 @@ const styles = StyleSheet.create({
   },
   imageBackground: {
     flex: 1
+  },
+  headingText: {
+    fontFamily: 'Merriweather-light'
   },
   inputContainer: {
     width: "80%"

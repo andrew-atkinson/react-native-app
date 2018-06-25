@@ -5,6 +5,7 @@ import {AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN} from './actionTypes'
 import {APIKEY} from '../../../APIKEY.json'
 import {startMainTabs} from '../../screens/startMainTabs'
 import {uiStartLoading, uiStopLoading} from './index'
+import {WHITE, BACKGROUND_BLUE} from '../../assets/color'
 
 export const tryAuth = (authData, authMode) => dispatch => {
   dispatch(uiStartLoading())
@@ -124,7 +125,15 @@ export const authLogout = () => dispatch => {
   .then(() => Navigation.startSingleScreenApp({
     screen: {
       screen: "places.AuthScreen",
-      title: "Login"
+      title: "Log in",
+      navigatorStyle:{
+        navBarBackgroundColor: BACKGROUND_BLUE,
+        navBarTextColor: WHITE,
+        navigationBarColor: BACKGROUND_BLUE,
+        navBarTextFontFamily: 'Merriweather-Regular',
+        navBarTextFontSize: 30,
+        navBarTitleTextCentered: true
+      }
     }
   }))
   dispatch(authRemoveToken())

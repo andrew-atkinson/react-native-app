@@ -64,12 +64,15 @@ export const startMainTabs = () => {
         navBarTextFontSize: 30,
         navBarTextColor: WHITE,
         screenBackgroundColor: LISTITEM_BLUE,
-        navBarTitleTextCentered: true
+        navBarTitleTextCentered: true,
+        statusBarTextColorScheme: 'light'
       },
       drawer: {
         left: {
           screen: "places.SideDrawerScreen"
-        }
+        },
+        type: 'MMDrawer',
+        animationType: 'parallax'
       }
     })
   })

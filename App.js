@@ -23,14 +23,15 @@ Navigation.registerComponent("places.SideDrawerScreen", () => SideDrawerScreen, 
 Navigation.startSingleScreenApp({
   screen: {
     screen: "places.AuthScreen",
-    title: "Login",
+    title: "Log in",
     navigatorStyle:{
       navBarBackgroundColor: BACKGROUND_BLUE,
       navBarTextColor: WHITE,
       navigationBarColor: BACKGROUND_BLUE,
       navBarTextFontFamily: 'Merriweather-Regular',
       navBarTextFontSize: 30,
-      navBarTitleTextCentered: true
+      navBarTitleTextCentered: true,
+      statusBarTextColorScheme: 'light'
     }
   }
 })
