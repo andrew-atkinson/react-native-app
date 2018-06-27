@@ -10,19 +10,10 @@
 	<string>Let&apos;s share a place!</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Ionicons.ttf</string>
-		<string>Merriweather-Regular.ttf</string>
 		<string>Merriweather-Light.ttf</string>
-		<string>Entypo.ttf</string>
-		<string>EvilIcons.ttf</string>
-		<string>Feather.ttf</string>
-		<string>FontAwesome.ttf</string>
-		<string>Foundation.ttf</string>
-		<string>MaterialCommunityIcons.ttf</string>
-		<string>MaterialIcons.ttf</string>
-		<string>Octicons.ttf</string>
-		<string>SimpleLineIcons.ttf</string>
-		<string>Zocial.ttf</string>
+		<string>Merriweather-Regular.ttf</string>
+		<string>Merriweather-Italic.ttf</string>
+		<string>Ionicons.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
